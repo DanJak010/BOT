@@ -228,7 +228,7 @@ client.on("messageCreate", (message) => {
             )
 
             .addFields(
-                { name: '🛠️ IMPOSTAZIONI INTERNE', value:'`kick` | `ban`', inline: true},
+                { name: '🛠️ IMPOSTAZIONI INTERNE', value:'`kick` | `ban` | `channelinfo` | `userinfo` |', inline: true},
                 { name: '🛠️ IMPOSTAZIONI INTERNE AUTOMATICHE', value:'`benvenuto` | `addio` | `banParolacce` ', inline: true},
                 { name: '\u200B', value: '\u200B' }
             )
@@ -298,4 +298,95 @@ client.on("messageCreate", message => {
             }))
         message.channel.send({ embeds: [embed] })
     }
-})
+});
+
+
+
+
+
+//ChannelInfo
+client.on("messageCreate", message => {
+    if (message.content.startsWith("!channelinfo")) {
+        if (message.content == "!channelinfo") {
+            var canale = message.channel;
+        }
+        else {
+            var canale = message.mentions.channels.first();
+        }
+        if (!canale) {
+            return message.channel.send("Canale non trovato");
+        }
+        switch (canale.type) {
+            case "GUILD_TEXT": canale.type = "Text"; break;
+            case "GUILD_VOICE": canale.type = "Voice"; break;
+            case "GUILD_CATEGORY": canale.type = "Category"; break;
+        }
+        if (canale.type == "Voice") {
+            var embed = new Discord.MessageEmbed()
+                .setTitle(canale.name)
+                .setDescription("Tutte le statistiche su questo canale")
+                .addField("Channel ID", canale.id, true)
+                .addField("Type", canale.type, true)
+                .addField("Position", canale.rawPosition.toString(), true)
+                .addField("Bitrate", canale.bitrate.toString(), true)
+                .addField("User limit", canale.userLimit == 0 ? "∞" : canale.userLimit.toString(), true)
+            return message.channel.send({ embeds: [embed] })
+        }
+        if (canale.type == "Category") {
+            var embed = new Discord.MessageEmbed()
+                .setTitle(canale.name)
+                .setDescription("Tutte le statistiche su questa categoria")
+                .addField("Category ID", canale.id, true)
+                .addField("Type", canale.type, true)
+                .addField("Position", canale.rawPosition.toString(), true)
+                .addField("Category created", canale.createdAt.toDateString())
+            return message.channel.send({ embeds: [embed] })
+        }
+        var embed = new Discord.MessageEmbed()
+            .setTitle(canale.name)
+            .setDescription("Tutte le statistiche su questo canale")
+            .addField("Channel ID", canale.id, true)
+            .addField("Type", canale.type, true)
+            .addField("Position", canale.rawPosition.toString(), true)
+            .addField("Topic", !canale.topic ? "No topic" : canale.topic, true)
+            .addField("NSFW", canale.nsfw ? "Yes" : "No", true)
+            .addField("Channel created", canale.createdAt.toDateString())
+        message.channel.send({ embeds: [embed] })
+    }
+});
+
+
+
+
+
+
+//userinfo
+client.on("messageCreate", message => {
+    if (message.content.startsWith("!userinfo")) {
+        if (message.content == "!userinfo") {
+            var utente = message.member;
+        }
+        else {
+            var utente = message.mentions.members.first();
+        }
+        if (!utente) {
+            return message.channel.send("Non ho trovato questo utente")
+        }
+        var elencoPermessi = "";
+        if (utente.permissions.has("ADMIN")) {
+            elencoPermessi = "👑 ADMINISTRATOR";
+        }
+        var embed = new Discord.MessageEmbed()
+            .setTitle(utente.user.tag)
+            .setDescription("Tutte le info di questo utente")
+            .setThumbnail(utente.user.displayAvatarURL())
+            .addField("User id", utente.user.id, true)
+            .addField("Status", utente.presence ? utente.presence.status : "offline", true)
+            .addField("Is a bot?", utente.user.bot ? "Yes" : "No", true)
+            .addField("Account created", utente.user.createdAt.toDateString(), true)
+            .addField("Joined this server", utente.joinedAt.toDateString(), true)
+            .addField("Permissions", elencoPermessi, false)
+            .addField("Roles", utente.roles.cache.map(ruolo => ruolo.name).join("\r"), false)
+        message.channel.send({ embeds: [embed] })
+    }
+});
