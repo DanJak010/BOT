@@ -228,7 +228,7 @@ client.on("messageCreate", (message) => {
             )
 
             .addFields(
-                { name: '🛠️ IMPOSTAZIONI INTERNE', value:'`kick` | `ban` | `channelinfo` | `userinfo` |', inline: true},
+                { name: '🛠️ IMPOSTAZIONI INTERNE', value:'`kick` | `ban` | `channelinfo` | `userinfo` | `ping` ', inline: true},
                 { name: '🛠️ IMPOSTAZIONI INTERNE AUTOMATICHE', value:'`benvenuto` | `addio` | `banParolacce` ', inline: true},
                 { name: '\u200B', value: '\u200B' }
             )
@@ -424,3 +424,20 @@ Andate a vedere "${response.items[0].title}\"
             })
     })
 }, 1000 * 30)
+
+
+
+
+
+
+//Ping
+client.on("messageCreate", message => {
+    if (message.content == "!ping") {
+        var embed = new Discord.MessageEmbed()
+            .setAuthor('Alina Bot', 'https://cdn.discordapp.com/attachments/931195861994733688/931275485554544660/IconaBot.png')
+            .setColor("DARK_GOLD")
+            .addField("Ping", `${client.ws.ping}ms`)
+
+        message.channel.send({embeds: [embed]})
+    }
+});
