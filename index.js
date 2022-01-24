@@ -234,7 +234,7 @@ client.on("messageCreate", (message) => {
             )
 
 
-            .setFooter(' by DanJakyt | VERSIONE: beta')
+            .setFooter(' by DanJakyt | VERSIONE: 1.0')
         message.channel.send({ embeds: [embed] })
 
     }
