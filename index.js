@@ -45,7 +45,8 @@ client.on('messageCreate', (message) =>{
         message.reply('Iscriviti al mio canale YouTube: https://www.youtube.com/c/DanJakyt');
         message.reply('Iscriviti al mio canale Twitch: https://www.twitch.tv/danjakyt/about');
         message.reply('Se vuoi donare me qualche spiccio beh: https://streamelements.com/danielegamer09-79/tip');
-        message.reply('Visita anche il mio sito web: https://danjak010.github.io/Site/');
+        message.reply('Visita anche il mio sito web: https://danjakyt.github.io/Site/');
+        message.reply('MyLink: https://danjakyt.github.io/mylink/');
         console.log('Eseguito!');
     }
 })
@@ -175,24 +176,27 @@ client.on("messageCreate", (message) => {
         message.channel.send("https://cdn.discordapp.com/attachments/931195861994733688/931522445838516264/thumb.php_.jpg")
 
     }
-});
 
-client.on("messageCreate", (message) => {
+
     if (message.content == "!WHAT"){
 
         message.channel.send("https://cdn.discordapp.com/attachments/931195861994733688/931522446065041438/IMG_0597.JPG")
 
     }
-});
 
-client.on("messageCreate", (message) => {
+
     if (message.content == "!BIGnigga"){
 
         message.channel.send("https://cdn.discordapp.com/attachments/931195861994733688/931522446291529738/20220102_174429.jpg")
 
     }
-});
 
+    if(message.content == "!ProfileImage"){
+        
+        message.reply({ files: ["./image/Logo.jpg"]});
+    }
+
+});
 
 
 
