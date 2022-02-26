@@ -191,11 +191,6 @@ client.on("messageCreate", (message) => {
 
     }
 
-    if(message.content == "!ProfileImage"){
-        
-        message.reply({ files: ["./image/Logo.jpg"]});
-    }
-
 });
 
 
@@ -445,3 +440,31 @@ client.on("messageCreate", message => {
         message.channel.send({embeds: [embed]})
     }
 });
+
+
+
+//Music
+client.on("messageCreate", message =>{
+    if(message.content == "!FaccettaNera") {
+        var embed = new Discord.MessageEmbed()
+            .setAuthor('FredBoat')
+            .setColor("DARK_GOLD")
+            .addField("Riproduzione Faccetta Nera in corso...")
+        message.channel.send({embeds: [embed]})
+
+        const canaleVocale = message.member.voice.channel;
+        if (canaleVocale) {
+            canaleVocale.join()
+                .then(connection => {
+                    connection.play('https://youtu.be/tw2wNctdhcY');
+                });
+        }
+        else {
+            message.channel.send("No voice channel");
+        }
+
+
+    }
+
+    
+})
