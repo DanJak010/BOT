@@ -203,7 +203,7 @@ client.on("messageCreate", (message) => {
 client.on("messageCreate", (message) => {
     if (message.content == "!help"){
 
-        const embed = new Discord.MessageEmbed()
+        var embed = new Discord.MessageEmbed()
             .setAuthor('Alina Bot', 'https://cdn.discordapp.com/attachments/931195861994733688/931275485554544660/IconaBot.png')
             .setTitle('Lista Comandi')
             .setColor ('#F1C40F')
@@ -234,7 +234,7 @@ client.on("messageCreate", (message) => {
 
 
             .setFooter(' by DanJakyt | VERSIONE: 1.0')
-        message.channel.send({ embeds: [embed] })
+        message.channel.send({embeds: [embed]})
 
 
     }
