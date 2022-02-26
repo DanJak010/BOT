@@ -455,14 +455,12 @@ client.on("messageCreate", message =>{
         const canaleVocale = message.member.voice.channel;
         if (canaleVocale) {
             canaleVocale.join()
-                .then(connection => {
-                    connection.play('https://youtu.be/tw2wNctdhcY');
-                });
         }
         else {
             message.channel.send("No voice channel");
         }
 
+        message.channel.send(";;play https://youtu.be/tw2wNctdhcY")
 
     }
 
