@@ -446,12 +446,6 @@ client.on("messageCreate", message => {
 //Music
 client.on("messageCreate", message =>{
     if(message.content == "!FaccettaNera") {
-        var embed = new Discord.MessageEmbed()
-            .setAuthor('FredBoat')
-            .setColor("DARK_GOLD")
-            .addField("Riproduzione Faccetta Nera in corso...")
-        message.channel.send({embeds: [embed]})
-
         const canaleVocale = message.member.voice.channel;
         if (canaleVocale) {
             canaleVocale.join()
