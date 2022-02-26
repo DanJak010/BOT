@@ -203,7 +203,7 @@ client.on("messageCreate", (message) => {
 client.on("messageCreate", (message) => {
     if (message.content == "!help"){
 
-        var embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
             .setAuthor('Alina Bot', 'https://cdn.discordapp.com/attachments/931195861994733688/931275485554544660/IconaBot.png')
             .setTitle('Lista Comandi')
             .setColor ('#F1C40F')
@@ -236,29 +236,6 @@ client.on("messageCreate", (message) => {
             .setFooter(' by DanJakyt | VERSIONE: 1.0')
         message.channel.send({ embeds: [embed] })
 
-
-
-        var embed = new Discord.MessageEmbed()
-            .setAuthor('FredBoat', 'https://cdn.discordapp.com/attachments/931195861994733688/947064401901518848/dSEAm3X.png')
-            .setTitle('Lista Comandi')
-            .setColor ('#F1C40F')
-            .setThumbnail('https://cdn.discordapp.com/attachments/931195861994733688/947064401901518848/dSEAm3X.png')
-
-            .addField('Per ascoltare la musica scrivi:', '`";;play"`\r')
-            
-
-
-            .addFields(
-                { name: '\u200B', value: '\u200B' },
-                { name: '🎤 AUDIO(scegli il link)', inline: true },
-                { name: '\u200B', value: '\u200B' },
-                { name: 'FACCETTA NERA', value: '`https://youtu.be/tw2wNctdhcY`', inline: true },
-                { name: '\u200B', value: '\u200B' },
-                { name: 'TAGLIATELLE DI PADRE PIO', value: '`https://youtu.be/RiMpxcnAek8`', inline: true },
-            )
-
-
-        message.channel.send({ embeds: [embed] })
 
     }
 })
