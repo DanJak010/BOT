@@ -116,55 +116,54 @@ client.on("guildMemberRemove", (member) => {
 //kick&ban
 
 //kick
-client.on('messageCreate', async (message) => {
+client.on("messageCreate", message => {
     if (message.content.startsWith("!kick")) {
-        var utenteKick = message.mentions.members.first();
-
-        if (!message.member.hasPermission("KICK_MEMBERS")) {
-            message.channel.send('Non hai il permesso');
-            return;
+        var utente = message.mentions.members.first();
+        if (!message.member.permissions.has('KICK_MEMBERS')) {
+            return message.channel.send('Non hai il permesso');
         }
-
-        if (!utenteKick) {
-            message.channel.send('Non hai menzionato nessun utente');
-            return;
+        if (!utente) {
+            return message.channel.send('Non hai menzionato nessun utente');
         }
-
-        if (!message.mentions.members.first().kickable) {
-            message.channel.send('Io non ho il permesso');
-            return
+        if (!utente.kickable) {
+            return message.channel.send('Io non ho il permesso');
         }
+        utente.kick()
+            .then(() => {
+                var embed = new Discord.MessageEmbed()
+                    .setTitle(`${utente.user.username} kickato`)
+                    .setDescription(`Utente kickato da ${message.author.toString()}`)
 
-        utenteKick.kick()
-            .then(() => message.channel.send("<@" + utenteKick + ">" + " kiccato"))
-
+                message.channel.send({ embeds: [embed] })
+            })
     }
+
+
+
 
 //ban
 
     if (message.content.startsWith("!ban")) {
-        var utenteBan = message.mentions.members.first();
-
-        if (!message.member.hasPermission("BAN_MEMBERS")) {
-            message.channel.send('Non hai il permesso');
-            return;
+        var utente = message.mentions.members.first();
+        if (!message.member.permissions.has('BAN_MEMBERS')) {
+            return message.channel.send('Non hai il permesso');
         }
-
-        if (!utenteBan) {
-            message.channel.send('Non hai menzionato nessun utente');
-            return;
+        if (!utente) {
+            return message.channel.send('Non hai menzionato nessun utente');
         }
-
-        if (!utenteBan.kickable) {
-            message.channel.send('Io non ho il permesso');
-            return
+        if (!utente.bannable) {
+            return message.channel.send('Io non ho il permesso');
         }
+        utente.ban()
+            .then(() => {
+                var embed = new Discord.MessageEmbed()
+                    .setTitle(`${utente.user.username} bannato`)
+                    .setDescription(`Utente bannato da ${message.author.toString()}`)
 
-        utenteBan.ban()
-            .then(() => message.channel.send("<@" + utenteBan + ">" + " è stato bannato"))
-
+                message.channel.send({ embeds: [embed] })
+            })
     }
-  
+
 });
 
 
