@@ -10,9 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^13.6.0",
+    "ffmpeg": "^0.0.4",
     "yt-channel-info": "^2.2.0"
   },
-  "engines":{
-    "node":"16.10.x"
+  "engines": {
+    "node": "16.10.x"
   }
 }

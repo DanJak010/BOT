@@ -6,6 +6,8 @@ const client = new Discord.Client({
 
 const ytch = require("yt-channel-info")
 
+const ffmpeg = require("ffmpeg-extra")
+
 client.login(process.env.token);
 
 client.on('ready', () =>{
@@ -441,3 +443,23 @@ client.on("messageCreate", message => {
     }
 });
 
+
+
+//youtubeMp3
+
+
+
+var bm = message.content.toLowerCase()
+
+client.on('messageCreate',message =>{
+
+    if (bm == "pray") {
+    var VC = message.member.voiceChannel;
+    if (!VC)
+        return message.reply("You are not in the church my son.")
+VC.join()
+    .then(connection => {
+        const dispatcher = connection.playFile('Watussi.mp3')
+        dispatcher.on("end", end => {VC.leave()})
+    })
+}});
