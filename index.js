@@ -6,7 +6,7 @@ const client = new Discord.Client({
 
 const ytch = require("yt-channel-info")
 
-const ffmpeg = require("ffmpeg-extra")
+const ffmpeg = require("ffmpeg")
 
 client.login(process.env.token);
 
