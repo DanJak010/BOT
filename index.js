@@ -442,24 +442,3 @@ client.on("messageCreate", message => {
         message.channel.send({embeds: [embed]})
     }
 });
-
-
-
-//youtubeMp3
-
-
-
-var bm = message.content.toLowerCase()
-
-client.on('messageCreate',message =>{
-
-    if (bm == "pray") {
-    var VC = message.member.voiceChannel;
-    if (!VC)
-        return message.reply("You are not in the church my son.")
-VC.join()
-    .then(connection => {
-        const dispatcher = connection.playFile('Watussi.mp3')
-        dispatcher.on("end", end => {VC.leave()})
-    })
-}});
